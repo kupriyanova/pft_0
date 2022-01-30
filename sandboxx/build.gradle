@@ -1,3 +1,10 @@
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = 'MyFirstProgram'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation group: 'org.testng', name: 'testng', version: '7.5'
+}
