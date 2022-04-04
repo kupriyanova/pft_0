@@ -19,4 +19,7 @@ public class HelperBase {
     protected void click(By locator) {
         wd.findElement(locator).click();
     }
+    public void acceptAlert() {
+        wd.switchTo().alert().accept();
+    }
 }
