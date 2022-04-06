@@ -8,10 +8,10 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 
-public class ContactModidicationTests extends TestBase {
+public class ContactDeletionTests extends TestBase {
 
   @Test
-  public void testContactModification() {
+  public void testContactDeletion() {
     app.getNavigationHelper().gotoHomePage();
 
     if (! app.getContactHelper().isThereAContact())
@@ -20,18 +20,14 @@ public class ContactModidicationTests extends TestBase {
 
     List<ContactData> before = app.getContactHelper().getContactList();
 
-    app.getContactHelper().openContactDetails(before.size() - 1);
-    app.getContactHelper().modifyOpenedContact();
-    ContactData modContact = new ContactData("modify", "modify2", "modify3", null);
-    app.getContactHelper().fillContactForm(
-            modContact, false);
-    app.getContactHelper().submitContactModify();
-    app.getNavigationHelper().returnToHomePage();
+    app.getContactHelper().selectContact(before.size() -1);
+    app.getContactHelper().deleteSelectedContact();
+    app.getContactHelper().acceptAlert();
+    app.getNavigationHelper().gotoHomePage();
 
-    List<ContactData>  after = app.getContactHelper().getContactList();
+    List<ContactData> after = app.getContactHelper().getContactList();
 
     before.remove(before.size() - 1);
-    before.add(modContact);
     assertEquals(after.size(), before.size());
 
     before.sort(Comparator.comparingInt(ContactData::getId));

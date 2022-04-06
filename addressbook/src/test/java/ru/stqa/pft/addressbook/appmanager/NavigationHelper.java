@@ -14,6 +14,10 @@ public class NavigationHelper extends HelperBase {
             return;
         click(By.linkText("home"));
     }
+    public void returnToHomePage() {
+        if (isElementPresent(By.linkText("home page")))
+            click(By.linkText("home page"));
+    }
 
     public void gotoGroupPage() {
         if(isElementPresent(By.tagName("h1"))

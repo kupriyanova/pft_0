@@ -2,9 +2,14 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -28,15 +33,16 @@ public class ContactHelper extends HelperBase {
 
     }
 
-    public void selectContact() {
-        click(By.name("selected[]"));
+    public void selectContact(int index) {
+        wd.findElements(By.name("selected[]")).get(index).click();
     }
     public void deleteSelectedContact() {
         click(By.cssSelector("input[onclick='DeleteSel()']"));
     }
 
-    public void openContactDetails() {
-        click(By.cssSelector("img[title='Details']"));
+    public void openContactDetails(int index) {
+        wd.findElements(By.cssSelector("img[title='Details']")).get(index).click();
+
     }
     public void modifyOpenedContact() {
         click(By.name("modifiy"));
@@ -63,5 +69,22 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public int getContactCount() {
+        return wd.findElements(By.name("selected[]")).size();
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contactList = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.cssSelector("tr[name='entry']"));
+        for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String lastName = element.findElements(By.tagName("td")).get(1).getText();
+            String firstName = element.findElements(By.tagName("td")).get(2).getText();
+            ContactData contact = new ContactData(id, firstName, lastName, null, null);
+            contactList.add(contact);
+        }
+        return contactList;
     }
 }
