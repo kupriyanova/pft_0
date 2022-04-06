@@ -5,38 +5,28 @@ import java.util.Objects;
 import static java.lang.Integer.MAX_VALUE;
 
 public class ContactData {
-  private int id;
+  private int id = MAX_VALUE;
   private String firstname;
   private String lastname;
   private String mobile;
   private String group;
 
+  public ContactData() {
+  }
 
-  public ContactData(String firstname, String lastname, String mobile, String group) {
-    this.id = MAX_VALUE;
+  public ContactData withFirstname(String firstname) {
     this.firstname = firstname;
-    this.lastname = lastname;
-    this.mobile = mobile;
-    this.group = group;
+    return this;
   }
 
-  public ContactData(int id, String firstname, String lastname, String mobile, String group) {
-    this.id = id;
-    this.firstname = firstname;
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
-    this.mobile = mobile;
-    this.group = group;
-  }
-  public void setFirstname(String firstname) {
-    this.firstname = firstname;
+    return this;
   }
 
-  public void setLastname(String lastname) {
-    this.lastname = lastname;
-  }
-
-  public void setMobile(String mobile) {
+  public ContactData withMobile(String mobile) {
     this.mobile = mobile;
+    return this;
   }
 
   public String getFirstname() {
@@ -59,8 +49,14 @@ public class ContactData {
     return id;
   }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override
@@ -79,11 +75,11 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname);
+    return Objects.hash(id, firstname, lastname);
   }
 }

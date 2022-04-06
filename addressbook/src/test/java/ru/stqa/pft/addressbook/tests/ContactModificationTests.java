@@ -9,7 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
-public class ContactDeletionTests extends TestBase {
+public class ContactModificationTests extends TestBase {
 
   @BeforeMethod
   public void ensurePreconditions() {
@@ -24,15 +24,22 @@ public class ContactDeletionTests extends TestBase {
   }
 
   @Test
-  public void testContactDeletion() {
+  public void testContactModification() {
     Contacts before = app.contact().all();
-    ContactData deletedContact = before.iterator().next();
+    ContactData contact = before.iterator().next();
+    ContactData modContact = new ContactData()
+            .withId(contact.getId())
+            .withFirstname("mod_test1")
+            .withLastname("mod_test2")
+            .withMobile("mod_test3");
 
-    app.contact().deleteById(deletedContact);
+    app.contact().modify(contact, modContact);
+
     Contacts after = app.contact().all();
 
-    assertEquals(after.size(), before.size()-1);
-    assertThat(after, equalTo(before.withOut(deletedContact)));
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.withOut(contact).withAdded(modContact)));
   }
+
 
 }

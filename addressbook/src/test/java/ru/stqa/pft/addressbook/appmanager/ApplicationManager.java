@@ -25,17 +25,18 @@ public class ApplicationManager {
     }
 
     private NavigationHelper navigationHelper;
-    public NavigationHelper getNavigationHelper() {
+
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
     private GroupHelper groupHelper;
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
     private ContactHelper contactHelper;
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 

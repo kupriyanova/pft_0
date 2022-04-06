@@ -9,6 +9,7 @@ dependencies {
     implementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.3'
     implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
     testImplementation group: 'org.testng', name: 'testng', version: '7.5'
+    implementation 'org.hamcrest:hamcrest:2.2'
 }
 
 test {
