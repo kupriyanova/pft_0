@@ -14,6 +14,22 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
+    private Groups groupCache = null;
+
+    public Groups all() {
+        if (groupCache != null) {
+            return new Groups(groupCache);
+        }
+        groupCache = new Groups();
+        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+        for (WebElement element : elements) {
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            String name = element.getText();
+            groupCache.add(new GroupData().withId(id).withName(name));
+        }
+        return new Groups(groupCache);
+    }
+
     public void returnToGroupPage() {
         click(By.linkText("group page"));
     }
@@ -44,10 +60,15 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    private void selectGroupById(int id) {
+        wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
+    }
+
     public void create(GroupData groupData) {
         initCreation();
         fillForm(groupData);
         submitCreation();
+        groupCache = null;
         returnToGroupPage();
     }
     public void modify(GroupData group) {
@@ -55,27 +76,17 @@ public class GroupHelper extends HelperBase {
         initModification();
         fillForm(group);
         submitModification();
+        groupCache = null;
         returnToGroupPage();
     }
-
-    public Groups all() {
-        Groups groups = new Groups();
-        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            String name = element.getText();
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-        return groups;
-    }
-
-    private void selectGroupById(int id) {
-        wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
-    }
-
     public void delete(GroupData group) {
         selectGroupById(group.getId());
         deleteSelected();
+        groupCache = null;
         returnToGroupPage();
+    }
+
+    public int count() {
+        return wd.findElements(By.name("selected[]")).size();
     }
 }

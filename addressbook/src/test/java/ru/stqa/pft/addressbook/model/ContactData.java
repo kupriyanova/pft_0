@@ -8,54 +8,110 @@ public class ContactData {
   private int id = MAX_VALUE;
   private String firstname;
   private String lastname;
-  private String mobile;
   private String group;
+  private String home;
+  private String mobile;
+  private String work;
+  private String allPhones;
+  private String email1;
+  private String email2;
+  private String email3;
+  private String allEmail;
+  private String address;
 
   public ContactData() {
   }
 
-  public ContactData withFirstname(String firstname) {
-    this.firstname = firstname;
-    return this;
+  public int getId() {
+    return id;
   }
-
-  public ContactData withLastname(String lastname) {
-    this.lastname = lastname;
-    return this;
-  }
-
-  public ContactData withMobile(String mobile) {
-    this.mobile = mobile;
-    return this;
-  }
-
   public String getFirstname() {
     return firstname;
   }
-
   public String getLastname() {
     return lastname;
   }
-
-  public String getMobile() {
-    return mobile;
-  }
-
   public String getGroup() {
     return group;
   }
-
-  public int getId() {
-    return id;
+  public String getAllPhones() {
+    return allPhones;
+  }
+  public String getMobilePhone() {
+    return mobile;
+  }
+  public String getHomePhone() {
+    return home;
+  }
+  public String getWorkPhone() {
+    return work;
+  }
+  public String getEmail1() {
+    return email1;
+  }
+  public String getEmail2() {
+    return email2;
+  }
+  public String getEmail3() {
+    return email3;
+  }
+  public String getAllEmail() {
+    return allEmail;
+  }
+  public String getAddress() {
+    return address;
   }
 
   public ContactData withId(int id) {
     this.id = id;
     return this;
   }
-
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+}
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
   public ContactData withGroup(String group) {
     this.group = group;
+    return this;
+  }
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+  public ContactData withMobile(String mobile) {
+    this.mobile = mobile;
+    return this;
+  }
+  public ContactData withHome(String home) {
+    this.home = home;
+    return this;
+  }
+  public ContactData withWork(String work) {
+    this.work = work;
+    return this;
+  }
+  public ContactData withEmail(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+  public ContactData withAllEmail(String allEmail) {
+    this.allEmail = allEmail;
+    return this;
+  }
+  public ContactData withAddress(String address) {
+    this.address = address;
     return this;
   }
 
@@ -65,8 +121,16 @@ public class ContactData {
             "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
-            ", mobile='" + mobile + '\'' +
             ", group='" + group + '\'' +
+            ", home='" + home + '\'' +
+            ", mobile='" + mobile + '\'' +
+            ", work='" + work + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", email1='" + email1 + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", allEmail='" + allEmail + '\'' +
+            ", address='" + address + '\'' +
             '}';
   }
 

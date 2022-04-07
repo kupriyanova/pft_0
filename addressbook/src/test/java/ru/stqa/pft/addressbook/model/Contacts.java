@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Contacts extends ForwardingSet<ContactData> {
 
-    private Set<ContactData> delegate;
+    private final Set<ContactData> delegate;
 
     public Contacts(Contacts contacts) {
         this.delegate = new HashSet<>(contacts.delegate);
@@ -29,8 +29,8 @@ public class Contacts extends ForwardingSet<ContactData> {
     }
 
     public Contacts withOut(ContactData contact) {
-        Contacts groups = new Contacts(this);
-        groups.remove(contact);
-        return groups;
+        Contacts contacts = new Contacts(this);
+        contacts.remove(contact);
+        return contacts;
     }
 }
