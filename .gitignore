@@ -96,3 +96,13 @@ addressbook/gradle/wrapper/gradle-wrapper.properties
 addressbook/gradlew
 
 addressbook/gradlew.bat
+
+addressbook/src/test/resources/contacts.json
+
+addressbook/src/test/resources/groups.json
+
+addressbook/src/test/resources/groups.xml
+
+addressbook/src/test/resources/stru.png
+
+*.log
