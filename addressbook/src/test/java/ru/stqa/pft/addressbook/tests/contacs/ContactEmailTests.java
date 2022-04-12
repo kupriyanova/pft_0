@@ -15,25 +15,25 @@ public class ContactEmailTests extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        app.goTo().gotoHomePage();
-
-        if (app.contact().all().size() == 0)
+        if (app.db().contacts().size() == 0) {
+            app.goTo().gotoHomePage();
             app.contact().create(new ContactData()
                     .withFirstname("test1")
                     .withLastname("test2")
                     .withGroup("test1")
-                    .withEmail("email1@mail.com")
+                    .withAddress("address1")
                     .withEmail2("email2@mail.com")
                     .withEmail3("email3@mail.com"));
+        }
     }
 
     @Test
     public void testContactPhone() {
-        ContactData contact = app.contact().all().iterator().next();
+        ContactData contact = app.db().contacts().iterator().next();
+        app.goTo().gotoHomePage();
         ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getAllEmail(), equalTo(
-                mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact, equalTo(contactInfoFromEditForm));
     }
 
     private String mergeEmails(ContactData contact) {

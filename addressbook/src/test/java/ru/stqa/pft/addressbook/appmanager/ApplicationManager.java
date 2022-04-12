@@ -19,36 +19,38 @@ public class ApplicationManager {
     private final Properties properties;
     WebDriver wd;
 
+    private NavigationHelper navigationHelper;
+    private GroupHelper groupHelper;
+    private ContactHelper contactHelper;
     private SessionHelper sessionHelper;
+    private DBHelper dbHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
         properties = new Properties();
     }
 
-    public SessionHelper getSessionHelper() {
-        return sessionHelper;
-    }
-
-    private NavigationHelper navigationHelper;
-
     public NavigationHelper goTo() {
         return navigationHelper;
     }
 
-    private GroupHelper groupHelper;
     public GroupHelper group() {
         return groupHelper;
     }
 
-    private ContactHelper contactHelper;
     public ContactHelper contact() {
         return contactHelper;
+    }
+
+    public DBHelper db() {
+        return dbHelper;
     }
 
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(String.format("src/test/resources/%s.properties", target)));
+
+        dbHelper = new DBHelper();
 
         if (browser.equals(BrowserType.FIREFOX)) {
             WebDriverManager.firefoxdriver().setup();
@@ -67,7 +69,7 @@ public class ApplicationManager {
         navigationHelper = new NavigationHelper(wd);
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
-        getSessionHelper().login(
+        sessionHelper.login(
                 properties.getProperty("web.adminLogin"),
                 properties.getProperty("web.adminPassword"));
     }

@@ -48,18 +48,18 @@ public class ContactCreationTests extends TestBase {
         app.goTo().gotoHomePage();
         File photo = new File("src/test/resources/stru.png");
 
-        Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData newContact = new ContactData()
                 .withFirstname(contact.getFirstname())
                 .withLastname(contact.getLastname())
                 .withMobile(contact.getMobilePhone())
                 .withAddress(contact.getAddress())
                 .withEmail(contact.getEmail())
-                .withPhoto(photo)
+//                .withPhoto(photo)
                 .withGroup("test1");
         app.contact().create(newContact);
         assertEquals(app.contact().count(), before.size()+1);
-        Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
 
         assertThat(after, equalTo(
                 before.withAdded(newContact

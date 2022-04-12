@@ -1,27 +1,59 @@
 package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
 import static java.lang.Integer.MAX_VALUE;
 
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
+
+  @Id
   private int id = MAX_VALUE;
-  @Expose private String firstname;
-  @Expose private String lastname;
-  private String group;
+
+  @Expose
+  @Column(name = "firstname")
+  private String firstname;
+
+  @Expose
+  @Column(name = "lastname")
+  private String lastname;
+
+  transient private String group;
+
+  @Column(name = "home")
+  @Type(type = "text")
   private String home;
+
+  @Column(name = "mobile")
+  @Type(type = "text")
   @Expose private String mobile;
+
+  @Column(name = "work")
+  @Type(type = "text")
   private String work;
-  private String allPhones;
-  @Expose private String email1;
+
+  transient private String allPhones;
+
+  @Expose
+  @Type(type = "text")
+  private String email;
+  @Type(type = "text")
   private String email2;
+  @Type(type = "text")
   private String email3;
-  private String allEmail;
-  @Expose private String address;
-  private File photo;
+  transient private String allEmail;
+  @Expose
+  @Type(type = "text")
+  private String address;
+
+  @Transient
+  private String photo;
 
   public ContactData() {
   }
@@ -51,7 +83,7 @@ public class ContactData {
     return work;
   }
   public String getEmail() {
-    return email1;
+    return email;
   }
   public String getEmail2() {
     return email2;
@@ -99,7 +131,7 @@ public class ContactData {
     return this;
   }
   public ContactData withEmail(String email1) {
-    this.email1 = email1;
+    this.email = email1;
     return this;
   }
   public ContactData withEmail2(String email2) {
@@ -130,7 +162,7 @@ public class ContactData {
             ", mobile='" + mobile + '\'' +
             ", work='" + work + '\'' +
             ", allPhones='" + allPhones + '\'' +
-            ", email1='" + email1 + '\'' +
+            ", email1='" + email + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
             ", allEmail='" + allEmail + '\'' +
@@ -143,20 +175,11 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname);
+    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(group, that.group) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(allPhones, that.allPhones) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(allEmail, that.allEmail) && Objects.equals(address, that.address) && Objects.equals(photo, that.photo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname);
-  }
-
-  public File getPhoto() {
-    return photo;
-  }
-
-  public ContactData withPhoto(File photo) {
-    this.photo = photo;
-    return this;
+    return Objects.hash(id, firstname, lastname, group, home, mobile, work, allPhones, email, email2, email3, allEmail, address, photo);
   }
 }
