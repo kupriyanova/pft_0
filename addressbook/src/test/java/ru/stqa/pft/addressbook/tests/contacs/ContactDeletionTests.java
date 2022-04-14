@@ -19,8 +19,7 @@ public class ContactDeletionTests extends TestBase {
             app.contact().create(new ContactData()
                     .withFirstname("test1")
                     .withLastname("test2")
-                    .withMobile("test3")
-                    .withGroup("test1"));
+                    .withMobile("test3"));
         }
     }
 

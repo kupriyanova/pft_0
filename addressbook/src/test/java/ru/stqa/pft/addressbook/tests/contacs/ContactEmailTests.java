@@ -20,7 +20,7 @@ public class ContactEmailTests extends TestBase {
             app.contact().create(new ContactData()
                     .withFirstname("test1")
                     .withLastname("test2")
-                    .withGroup("test1")
+//                    .withGroup("test1")
                     .withAddress("address1")
                     .withEmail2("email2@mail.com")
                     .withEmail3("email3@mail.com"));

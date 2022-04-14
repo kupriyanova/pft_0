@@ -19,8 +19,7 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData()
                     .withFirstname("test1")
                     .withLastname("test2")
-                    .withMobile("test3")
-                    .withGroup("test1"));
+                    .withMobile("test3"));
         }
     }
 
@@ -39,5 +38,6 @@ public class ContactModificationTests extends TestBase {
         Contacts after = app.db().contacts();
 
         assertThat(after, equalTo(before.withOut(contact).withAdded(modContact)));
+        verifyGContactListUI();
     }
 }
