@@ -15,6 +15,10 @@ gradle-app.setting
 
 .idea/
 *.log
+sandboxx/build/
+sandboxx/gradle/
+sandboxx/gradlew
+sandboxx/gradlew.bat
 addressbook/build/
 addressbook/gradle/
 addressbook/gradlew
