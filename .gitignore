@@ -28,3 +28,8 @@ rest-sample/gradle/
 rest-sample/gradlew
 rest-sample/gradlew.bat
 rest-sample/settings.gradle
+github-sample/build/
+github-sample/gradle/
+github-sample/gradlew
+github-sample/gradlew.bat
+github-sample/settings.gradle
