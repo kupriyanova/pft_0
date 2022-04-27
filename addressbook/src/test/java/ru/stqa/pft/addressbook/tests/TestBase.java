@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.tests;
 import org.openqa.selenium.remote.BrowserType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -30,8 +31,9 @@ public class TestBase {
             System.getProperty("browser",  BrowserType.CHROME));
 
     @BeforeSuite
-    public void setUp() throws IOException {
+    public void setUp(ITestContext context) throws IOException {
         app.init();
+        context.setAttribute("app", app);
     }
     @BeforeMethod
     public void logTestStart(Method m, Object[] p) {
