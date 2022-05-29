@@ -44,6 +44,7 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
+    /** Создает группу с переданными в параметре данными */
     public void createGroup(GroupData groupData) {
         initGroupCreation();
         fillGroupForm(groupData);
@@ -51,7 +52,15 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
+    /** Проверяет есть ли на странице хотя бы одна группа */
     public boolean isThereAGroup() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    /** Проверяет есть ли на странице группа с названием переданным в параметре */
+    public boolean isThereAGroupWithName(String groupName) {
+         Boolean result = isElementPresent(By.cssSelector(
+                "input[title='Select ("+groupName+")']"));
+        return result;
     }
 }
