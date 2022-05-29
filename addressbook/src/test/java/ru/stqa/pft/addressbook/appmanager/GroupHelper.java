@@ -89,4 +89,11 @@ public class GroupHelper extends HelperBase {
     public int count() {
         return wd.findElements(By.name("selected[]")).size();
     }
+
+    /** Проверяет есть ли на странице группа с названием переданным в параметре */
+    public boolean isThereAGroupWithName(String groupName) {
+        Boolean result = isElementPresent(By.cssSelector(
+                "input[title='Select ("+groupName+")']"));
+        return result;
+    }
 }

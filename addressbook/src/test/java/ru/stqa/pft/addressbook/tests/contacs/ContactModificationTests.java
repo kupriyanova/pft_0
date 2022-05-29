@@ -20,8 +20,14 @@ public class ContactModificationTests extends TestBase {
             app.contact().create(new ContactData()
                     .withFirstname("test1")
                     .withLastname("test2")
-                    .withMobile("test3")
-                    .withGroup("test1"));
+                    .withGroup("test1")
+                    .withEmail("email1@mail.com")
+                    .withEmail2("email2@mail.com")
+                    .withEmail3("email3@mail.com")
+                    .withHome("+7 (111) 111-11-11")
+                    .withMobile("+7 (222) 222-22-22")
+                    .withWork("+7 (333) 333-33-33")
+                    .withFax("+7 (333) 444-33-33"));
     }
 
     @Test
