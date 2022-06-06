@@ -5,6 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import static ru.stqa.pft.addressbook.appmanager.GroupHelper.createGroup;
+import static ru.stqa.pft.addressbook.appmanager.GroupHelper.isThereAGroupWithName;
+import static ru.stqa.pft.addressbook.appmanager.NavigationHelper.gotoGroupPage;
+import static ru.stqa.pft.addressbook.appmanager.NavigationHelper.gotoHomePage;
 
 public class ContactHelper extends HelperBase {
 
@@ -63,5 +69,20 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereAContact() {
         return isElementPresent(By.name("selected[]"));
+    }
+
+    public void checkPrecondition() {
+        ContactData newContact = new ContactData(
+            "test1", "test2", "test3", "test1");
+
+        // если нет ни одного контакта
+        if (! isThereAContact()) {
+            // если нет группы с нужным наванием, то создаем
+            gotoGroupPage();
+            if (!isThereAGroupWithName(newContact.getGroup()))
+                createGroup(new GroupData(newContact.getGroup(), "test2", "test3"));
+            gotoHomePage();
+            createContact(newContact);
+        }
     }
 }

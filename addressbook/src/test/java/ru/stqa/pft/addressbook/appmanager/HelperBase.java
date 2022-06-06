@@ -3,13 +3,13 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.*;
 
 public class HelperBase {
-    WebDriver wd;
+    static WebDriver wd;
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
     }
 
-    protected void type(By locator, String text) {
+    protected static void type(By locator, String text) {
         WebElement input = wd.findElement(locator);
         click(input);
         if(text != null) {
@@ -20,10 +20,10 @@ public class HelperBase {
         }
     }
 
-    protected void click(By locator) {
+    protected static void click(By locator) {
         wd.findElement(locator).click();
     }
-    protected void click(WebElement locator) {
+    protected static void click(WebElement locator) {
         locator.click();
     }
     public void acceptAlert() {
@@ -39,7 +39,7 @@ public class HelperBase {
         }
     }
 
-    protected boolean isElementPresent(By locator) {
+    protected static boolean isElementPresent(By locator) {
         try {
             wd.findElement(locator);
             return true;

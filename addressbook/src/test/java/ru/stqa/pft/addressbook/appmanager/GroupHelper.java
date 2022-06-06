@@ -10,21 +10,21 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
-    public void returnToGroupPage() {
+    public static void returnToGroupPage() {
         click(By.linkText("group page"));
     }
 
-    public void submitGroupCreation() {
+    public static void submitGroupCreation() {
         click(By.name("submit"));
     }
 
-    public void fillGroupForm(GroupData groupData) {
+    public static void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void initGroupCreation() {
+    public static void initGroupCreation() {
         click(By.name("new"));
     }
 
@@ -45,7 +45,7 @@ public class GroupHelper extends HelperBase {
     }
 
     /** Создает группу с переданными в параметре данными */
-    public void createGroup(GroupData groupData) {
+    public static void createGroup(GroupData groupData) {
         initGroupCreation();
         fillGroupForm(groupData);
         submitGroupCreation();
@@ -58,7 +58,7 @@ public class GroupHelper extends HelperBase {
     }
 
     /** Проверяет есть ли на странице группа с названием переданным в параметре */
-    public boolean isThereAGroupWithName(String groupName) {
+    public static boolean isThereAGroupWithName(String groupName) {
          Boolean result = isElementPresent(By.cssSelector(
                 "input[title='Select ("+groupName+")']"));
         return result;
