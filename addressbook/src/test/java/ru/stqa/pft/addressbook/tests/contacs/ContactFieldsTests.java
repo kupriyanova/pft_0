@@ -13,6 +13,10 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class ContactFieldsTests extends TestBase {
 
+    /** Оставила разделение на тестовые методы,
+     * что бы избежать падения всех проверок, при падении одной из первых */
+
+
     ContactData contact;
     ContactData contactInfoFromEditForm;
 
@@ -25,6 +29,7 @@ public class ContactFieldsTests extends TestBase {
                     .withFirstname("test1")
                     .withLastname("test2")
                     .withGroup("test1")
+                    .withAddress("address1")
                     .withEmail("email1@mail.com")
                     .withEmail2("email2@mail.com")
                     .withEmail3("email3@mail.com")
@@ -37,7 +42,7 @@ public class ContactFieldsTests extends TestBase {
         contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
     }
 
-    @Test
+    @Test(testName = "Проверка имэйлов")
     public void testContactEmails() {
         assertThat("Имейлы контакта на главной странице должны совпадать с имейлами " +
                 "этого контакта в форме редактирования",
@@ -45,12 +50,19 @@ public class ContactFieldsTests extends TestBase {
                 mergeEmails(contactInfoFromEditForm)));
     }
 
-    @Test
+    @Test(testName = "Проверка телефонов")
     public void testContactPhones() {
         assertThat("Телефоны контакта на главной странице должны совпадать с телефонами " +
                 "этого контакта в форме редактирования",
                 contact.getAllPhones(), equalTo(
                 mergePhones(contactInfoFromEditForm)));
+    }
+
+    @Test(testName = "Проверка адреса")
+    public void testContactAddress() {
+        assertThat("Адрес контакта на главной странице должен совпадать с адресом " +
+            "этого контакта в форме редактирования",
+            contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     }
 
     /** Убирает лишние символы */
