@@ -12,9 +12,9 @@ public class HelperBase {
     }
 
     protected void type(By locator, String text) {
-        WebElement input = wd.findElement(locator);
-        click(input);
         if(text != null) {
+            WebElement input = wd.findElement(locator);
+            click(input);
             if(!input.getAttribute("value").equals(text)) {
                 input.clear();
                 input.sendKeys(text);
@@ -22,9 +22,8 @@ public class HelperBase {
         }
     }
     protected void attach(By locator, File file) {
-        WebElement input = wd.findElement(locator);
         if(file != null) {
-            input.sendKeys(file.getAbsolutePath());
+            wd.findElement(locator).sendKeys(file.getAbsolutePath());
         }
     }
 
