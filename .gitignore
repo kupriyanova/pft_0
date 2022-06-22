@@ -1,5 +1,6 @@
 .gradle
 /build/
+*.log
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -13,85 +14,7 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-.idea/.name
-
-.idea/checkstyle-idea.xml
-
-.idea/compiler.xml
-
-.idea/gradle.xml
-
-.idea/jarRepositories.xml
-
-.idea/libraries/Gradle__com_beust_jcommander_1_78.xml
-
-.idea/libraries/Gradle__com_google_code_findbugs_jsr305_1_3_9.xml
-
-.idea/libraries/Gradle__com_google_code_findbugs_jsr305_3_0_1.xml
-
-.idea/libraries/Gradle__com_google_errorprone_error_prone_annotations_2_1_3.xml
-
-.idea/libraries/Gradle__com_google_guava_guava_25_0_jre.xml
-
-.idea/libraries/Gradle__com_google_j2objc_j2objc_annotations_1_1.xml
-
-.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_11_0.xml
-
-.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0.xml
-
-.idea/libraries/Gradle__net_bytebuddy_byte_buddy_1_8_15.xml
-
-.idea/libraries/Gradle__org_apache_commons_commons_exec_1_3.xml
-
-.idea/libraries/Gradle__org_checkerframework_checker_compat_qual_2_0_0.xml
-
-.idea/libraries/Gradle__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml
-
-.idea/libraries/Gradle__org_hamcrest_java_hamcrest_2_0_0_0.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_api_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_chrome_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_edge_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_firefox_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_ie_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_java_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_opera_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_remote_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_safari_driver_3_141_59.xml
-
-.idea/libraries/Gradle__org_seleniumhq_selenium_selenium_support_3_141_59.xml
-
-.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_32.xml
-
-.idea/libraries/Gradle__org_testng_testng_7_5.xml
-
-.idea/libraries/Gradle__org_webjars_jquery_3_5_1.xml
-
-.idea/misc.xml
-
-.idea/modules/mantis.iml
-
-.idea/modules/mantis.test.iml
-
-.idea/modules/sandboxx.test.iml
-
-.idea/runConfigurations.xml
-
-.idea/uiDesigner.xml
-
-.idea/vcs.xml
-
-addressbook/gradle/wrapper/gradle-wrapper.jar
-
-addressbook/gradle/wrapper/gradle-wrapper.properties
+addressbook/gradle/
 
 addressbook/gradlew
 
@@ -105,40 +28,5 @@ addressbook/src/test/resources/groups.xml
 
 addressbook/src/test/resources/stru.png
 
-*.log
 
-mantis/build/classes/java/test/ru/stqa/pft/mantis/appmanager/ApplicationManager.class
-
-mantis/build/classes/java/test/ru/stqa/pft/mantis/appmanager/HttpSession.class
-
-mantis/build/classes/java/test/ru/stqa/pft/mantis/appmanager/RegistrationHelper.class
-
-mantis/build/classes/java/test/ru/stqa/pft/mantis/tests/LoginTests.class
-
-mantis/build/classes/java/test/ru/stqa/pft/mantis/tests/RegistrationTests.class
-
-mantis/build/classes/java/test/ru/stqa/pft/mantis/tests/TestBase.class
-
-mantis/build/reports/tests/test/classes/ru.stqa.pft.mantis.tests.LoginTests.html
-
-mantis/build/reports/tests/test/css/base-style.css
-
-mantis/build/reports/tests/test/css/style.css
-
-mantis/build/reports/tests/test/index.html
-
-mantis/build/reports/tests/test/js/report.js
-
-mantis/build/reports/tests/test/packages/ru.stqa.pft.mantis.tests.html
-
-mantis/build/resources/test/local.properties
-
-mantis/build/test-results/test/binary/output.bin
-
-mantis/build/test-results/test/binary/output.bin.idx
-
-mantis/build/test-results/test/binary/results.bin
-
-mantis/build/test-results/test/TEST-ru.stqa.pft.mantis.tests.LoginTests.xml
-
-mantis/build/tmp/compileTestJava/previous-compilation-data.bin
+mantis/build/
