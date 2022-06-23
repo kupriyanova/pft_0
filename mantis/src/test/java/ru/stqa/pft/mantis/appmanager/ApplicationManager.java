@@ -25,6 +25,7 @@ public class ApplicationManager {
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
     private DbHelper dbHelper;
+    private SoupHelper soupHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -78,6 +79,13 @@ public class ApplicationManager {
             dbHelper = new DbHelper(this);
         }
         return dbHelper;
+    }
+
+    public SoupHelper soup() {
+        if (soupHelper == null) {
+            soupHelper = new SoupHelper(this);
+        }
+        return soupHelper;
     }
 
     public WebDriver getDriver() {
