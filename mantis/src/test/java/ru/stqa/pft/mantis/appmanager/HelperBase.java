@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
+
 import org.openqa.selenium.*;
 
 import java.io.File;

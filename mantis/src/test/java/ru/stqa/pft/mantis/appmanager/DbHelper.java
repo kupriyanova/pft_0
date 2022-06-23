@@ -10,6 +10,7 @@ import ru.stqa.pft.mantis.model.Users;
 
 import java.util.List;
 
+
 public class DbHelper {
 
   private final SessionFactory sessionFactory;
