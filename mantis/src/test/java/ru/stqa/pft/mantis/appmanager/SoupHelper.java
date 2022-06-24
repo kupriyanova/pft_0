@@ -28,7 +28,7 @@ public class SoupHelper {
 
   public Set<Project> getProjects() throws RemoteException, MalformedURLException, ServiceException {
     MantisConnectPortType mc = getMantisConnect();
-    ProjectData[] projects = mc.mc_projects_get_user_accessible("administrator", "root");
+    ProjectData[] projects = mc.mc_projects_get_user_accessible(SOUP_ADMIN, SOUP_PASSWORD);
     return Arrays.asList(projects).stream()
         .map(p -> new Project().setId(p.getId()).setName(p.getName()))
         .collect(Collectors.toSet());
