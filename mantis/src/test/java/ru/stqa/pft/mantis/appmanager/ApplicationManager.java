@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 public class ApplicationManager {
 
     private final Properties properties;
@@ -23,6 +24,8 @@ public class ApplicationManager {
     private FtpHelper ftpHelper;
     private MailHelper mailHelper;
     private JamesHelper jamesHelper;
+    private DbHelper dbHelper;
+    private SoupHelper soupHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -69,6 +72,20 @@ public class ApplicationManager {
         if(jamesHelper == null)
             jamesHelper = new JamesHelper(this);
         return jamesHelper;
+    }
+
+    public DbHelper db() {
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
+    }
+
+    public SoupHelper soup() {
+        if (soupHelper == null) {
+            soupHelper = new SoupHelper(this);
+        }
+        return soupHelper;
     }
 
     public WebDriver getDriver() {

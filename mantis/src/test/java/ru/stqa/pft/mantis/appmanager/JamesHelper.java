@@ -62,7 +62,7 @@ public class JamesHelper {
         mailServer = app.getProperty("mailServer.host");
         int port = Integer.parseInt(app.getProperty("mailServer.port"));
         String login = app.getProperty("mailServer.adminLogin");
-        String password = app.getProperty("mailServer.admiPassword");
+        String password = app.getProperty("mailServer.adminPassword");
 
         try {
             telnet.connect(mailServer, port);

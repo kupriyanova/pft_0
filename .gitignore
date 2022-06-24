@@ -1,5 +1,6 @@
 .gradle
 /build/
+*.log
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -13,14 +14,8 @@ gradle-app.setting
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
 
-.idea/
-*.log
-sandboxx/build/
-sandboxx/gradle/
-sandboxx/gradlew
-sandboxx/gradlew.bat
-addressbook/build/
 addressbook/gradle/
+
 addressbook/gradlew
 addressbook/gradlew.bat
 mantis/build/
@@ -37,3 +32,14 @@ github-sample/gradle/
 github-sample/gradlew
 github-sample/gradlew.bat
 github-sample/settings.gradle
+
+addressbook/src/test/resources/contacts.json
+
+addressbook/src/test/resources/groups.json
+
+addressbook/src/test/resources/groups.xml
+
+addressbook/src/test/resources/stru.png
+
+
+mantis/build/
