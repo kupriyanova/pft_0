@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 public class SoupHelper {
 
+  private String SOUP_URL;
   private String SOUP_ADMIN;
   private String SOUP_PASSWORD;
 
@@ -22,6 +23,7 @@ public class SoupHelper {
 
   public SoupHelper(ApplicationManager app) {
     this.app = app;
+    SOUP_URL = app.getProperty("soup.url");
     SOUP_ADMIN = app.getProperty("soup.adminLogin");
     SOUP_PASSWORD = app.getProperty("soup.adminPassword");
   }
@@ -36,7 +38,7 @@ public class SoupHelper {
 
   private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     MantisConnectPortType mc = new MantisConnectLocator()
-        .getMantisConnectPort(new URL("http://localhost/mantisbt/api/soap/mantisconnect.php"));
+        .getMantisConnectPort(new URL(SOUP_URL));
     return mc;
   }
 
