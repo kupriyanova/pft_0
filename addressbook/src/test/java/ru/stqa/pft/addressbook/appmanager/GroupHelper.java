@@ -14,37 +14,21 @@ public class GroupHelper extends HelperBase {
         super(wd);
     }
 
-    private Groups groupCache = null;
-
-    public Groups all() {
-        if (groupCache != null) {
-            return new Groups(groupCache);
-        }
-        groupCache = new Groups();
-        List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-        for (WebElement element : elements) {
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            String name = element.getText();
-            groupCache.add(new GroupData().withId(id).withName(name));
-        }
-        return new Groups(groupCache);
-    }
-
-    public void returnToGroupPage() {
+    public static void returnToGroupPage() {
         click(By.linkText("group page"));
     }
 
-    public void submitCreation() {
+    public static void submitGroupCreation() {
         click(By.name("submit"));
     }
 
-    public void fillForm(GroupData groupData) {
+    public static void fillGroupForm(GroupData groupData) {
         type(By.name("group_name"), groupData.getName());
         type(By.name("group_header"), groupData.getHeader());
         type(By.name("group_footer"), groupData.getFooter());
     }
 
-    public void initCreation() {
+    public static void initGroupCreation() {
         click(By.name("new"));
     }
 
@@ -60,15 +44,11 @@ public class GroupHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    private void selectGroupById(int id) {
-        wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
-    }
-
-    public void create(GroupData groupData) {
-        initCreation();
-        fillForm(groupData);
-        submitCreation();
-        groupCache = null;
+    /** Создает группу с переданными в параметре данными */
+    public static void createGroup(GroupData groupData) {
+        initGroupCreation();
+        fillGroupForm(groupData);
+        submitGroupCreation();
         returnToGroupPage();
     }
     public void modify(GroupData group) {
@@ -86,7 +66,15 @@ public class GroupHelper extends HelperBase {
         returnToGroupPage();
     }
 
-    public int count() {
-        return wd.findElements(By.name("selected[]")).size();
+    /** Проверяет есть ли на странице хотя бы одна группа */
+    public boolean isThereAGroup() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
+    /** Проверяет есть ли на странице группа с названием переданным в параметре */
+    public static boolean isThereAGroupWithName(String groupName) {
+         Boolean result = isElementPresent(By.cssSelector(
+                "input[title='Select ("+groupName+")']"));
+        return result;
     }
 }

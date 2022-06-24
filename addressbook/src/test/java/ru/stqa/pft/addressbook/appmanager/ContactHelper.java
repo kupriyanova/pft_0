@@ -6,9 +6,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
-import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.List;
+import static ru.stqa.pft.addressbook.appmanager.GroupHelper.createGroup;
+import static ru.stqa.pft.addressbook.appmanager.GroupHelper.isThereAGroupWithName;
+import static ru.stqa.pft.addressbook.appmanager.NavigationHelper.gotoGroupPage;
+import static ru.stqa.pft.addressbook.appmanager.NavigationHelper.gotoHomePage;
 
 public class ContactHelper extends HelperBase {
 
@@ -117,42 +120,18 @@ public class ContactHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public ContactData infoFromEditForm(ContactData contact) {
-        initEditById(contact.getId());
-        String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
-        String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
-        String home = wd.findElement(By.name("home")).getAttribute("value");
-        String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
-        String work = wd.findElement(By.name("work")).getAttribute("value");
-        String email = wd.findElement(By.name("email")).getAttribute("value");
-        String email2 = wd.findElement(By.name("email2")).getAttribute("value");
-        String email3 = wd.findElement(By.name("email3")).getAttribute("value");
-        String address = wd.findElement(By.name("address")).getAttribute("value");
-        wd.navigate().back();
-        return new ContactData().withId(contact.getId())
-                .withFirstname(firstName)
-                .withLastname(lastName)
-                .withHome(home)
-                .withMobile(mobile)
-                .withWork(work)
-                .withEmail(email)
-                .withEmail2(email2)
-                .withEmail3(email3)
-                .withAddress(address);
-    }
+    public void checkPrecondition() {
+        ContactData newContact = new ContactData(
+            "test1", "test2", "test3", "test1");
 
-    public void addToGroup(int id) {
-        new Select(wd.findElement(By.name("to_group"))).selectByValue(String.valueOf(id));
-        wd.findElement(By.name("add")).click();
-        returnToHomePage();
-    }
-
-    public void filterContactsByGroup(int id) {
-        new Select(wd.findElement(By.name("group"))).selectByValue(String.valueOf(id));
-    }
-
-    public void removeFromGroup() {
-        wd.findElement(By.name("remove")).click();
-        returnToHomePage();
+        // если нет ни одного контакта
+        if (! isThereAContact()) {
+            // если нет группы с нужным наванием, то создаем
+            gotoGroupPage();
+            if (!isThereAGroupWithName(newContact.getGroup()))
+                createGroup(new GroupData(newContact.getGroup(), "test2", "test3"));
+            gotoHomePage();
+            createContact(newContact);
+        }
     }
 }
