@@ -17,9 +17,14 @@ public class ContactModificationTests extends TestBase {
         if (app.db().contacts().size() == 0) {
             app.goTo().homePage();
             app.contact().create(new ContactData()
-                    .withFirstname("test1")
-                    .withLastname("test2")
-                    .withMobile("test3"));
+                .withFirstname("mod_test1")
+                .withLastname("mod_test2")
+                .withMobile("mod_test3")
+                .withHome("home")
+                .withWork("work")
+                .withEmail("email1@mail.com")
+                .withEmail2("email2@mail.com")
+                .withEmail3("email3@mail.com"));
         }
     }
 
@@ -31,7 +36,12 @@ public class ContactModificationTests extends TestBase {
                 .withId(contact.getId())
                 .withFirstname("mod_test1")
                 .withLastname("mod_test2")
-                .withMobile("mod_test3");
+                .withMobile("mod_test3")
+                .withHome("home")
+                .withWork("work")
+                .withEmail("email1@mail.com")
+                .withEmail2("email2@mail.com")
+                .withEmail3("email3@mail.com");
 
         app.contact().modify(contact, modContact);
         assertEquals(app.contact().count(), before.size());

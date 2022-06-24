@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.google.gson.annotations.Expose;
 import org.hibernate.annotations.Type;
 
@@ -11,6 +12,7 @@ import java.util.Set;
 
 import static java.lang.Integer.MAX_VALUE;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 @Table(name = "addressbook")
 public class ContactData {
@@ -173,8 +175,6 @@ public class ContactData {
             ", email1='" + email + '\'' +
             ", email2='" + email2 + '\'' +
             ", email3='" + email3 + '\'' +
-            ", allEmail='" + allEmail + '\'' +
-            ", address='" + address + '\'' +
             '}';
   }
 
@@ -183,12 +183,22 @@ public class ContactData {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return id == that.id && Objects.equals(firstname, that.firstname) && Objects.equals(lastname, that.lastname) && Objects.equals(home, that.home) && Objects.equals(mobile, that.mobile) && Objects.equals(work, that.work) && Objects.equals(allPhones, that.allPhones) && Objects.equals(email, that.email) && Objects.equals(email2, that.email2) && Objects.equals(email3, that.email3) && Objects.equals(allEmail, that.allEmail) && Objects.equals(address, that.address) && Objects.equals(photo, that.photo);
+    return id == that.id && Objects.equals(firstname, that.firstname)
+        && Objects.equals(lastname, that.lastname)
+        && Objects.equals(home, that.home)
+        && Objects.equals(mobile, that.mobile)
+        && Objects.equals(work, that.work)
+        && Objects.equals(allPhones, that.allPhones)
+        && Objects.equals(email, that.email)
+        && Objects.equals(email2, that.email2)
+        && Objects.equals(email3, that.email3)
+        && Objects.equals(photo, that.photo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, firstname, lastname, home, mobile, work, allPhones, email, email2, email3, allEmail, address, photo);
+    return Objects.hash(id, firstname, lastname, home, mobile,
+        work, allPhones, email, email2, email3, photo);
   }
 
   public ContactData inGroup(GroupData group) {
