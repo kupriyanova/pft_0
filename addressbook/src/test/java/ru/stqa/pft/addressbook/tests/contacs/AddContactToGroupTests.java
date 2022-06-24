@@ -8,6 +8,7 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.tests.TestBase;
 
+import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class AddContactToGroupTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         if (app.db().contacts().size() == 0) {
-            app.goTo().gotoHomePage();
+            app.goTo().homePage();
             app.contact().create(new ContactData()
                     .withFirstname("forAddingToGroup")
                     .withLastname("test2")
@@ -38,11 +39,13 @@ public class AddContactToGroupTests extends TestBase {
         Groups groupsFromContact = contact.getGroups();
         // проверяем, что у контакта добавлены не все существующие группы
         if (groupsFromContact.size() == groups.size()) {
-            app.group().create(new GroupData().withName("group 12345")); // создаем новую
+            app.goTo().groupPage();
+            app.group().create(new GroupData().withName("group" + Instant.now())); // создаем новую
             groups = app.db().groups(); // обновляем список групп
         }
 
         // добавляем котакту группу которой еще нет
+        app.goTo().homePage();
         app.contact().selectById(contact.getId());
 
         // фильтруем группы которых нет у контакта

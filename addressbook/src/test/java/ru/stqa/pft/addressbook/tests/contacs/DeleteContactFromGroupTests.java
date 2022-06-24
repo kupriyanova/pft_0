@@ -8,21 +8,31 @@ import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 import ru.stqa.pft.addressbook.tests.TestBase;
 
+import java.time.Instant;
+
 import static org.testng.Assert.assertEquals;
 
-public class DeletContactFromGroupTests extends TestBase {
+public class DeleteContactFromGroupTests extends TestBase {
 
     private Groups groupsFromContact;
 
     @BeforeMethod
     public void ensurePreconditions() {
+        GroupData groupData = new GroupData().withName("group" + Instant.now()).withHeader("Group header").withFooter("Group footer");
+        if (app.db().groups().size() == 0) {
+            app.goTo().groupPage();
+            app.group().create(groupData); // создаем новую
+        }
         if (app.db().contacts().size() == 0) {
-            app.goTo().gotoHomePage();
+            app.goTo().homePage();
             app.contact().create(new ContactData()
                     .withFirstname("forAddingToGroup")
                     .withLastname("test2")
-                    .withMobile("test3"));
+                    .withMobile("test3")
+                .inGroup(groupData));
         }
+
+        app.goTo().homePage();
     }
 
     @Test
@@ -35,10 +45,12 @@ public class DeletContactFromGroupTests extends TestBase {
         ContactData contact = dbContacts.iterator().next();
         groupsFromContact = contact.getGroups();
         // проверяем, что у контакта есть хотя бы одна группа
-        if (groupsFromContact.size() == 0) { //если нет, создаем
+        if (groupsFromContact.size() == 0) { //если нет, добавляем
             app.contact().selectById(contact.getId());
             app.contact().addToGroup(groups.iterator().next().getId()); // добавляем в любую группу
-            groupsFromContact = contact.getGroups(); // обновляем список
+            groupsFromContact = app.db().contacts().stream()
+                .filter(c -> c.getId() == contact.getId()).iterator().next()
+                .getGroups(); // обновляем список
         }
 
         // Выбираем группу и удаляем из неё контакт
